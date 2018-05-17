@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{62f1431b-7038-45d3-98e0-a79e221b7bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{e0f80bde-7152-4580-b2a2-8c9852c17e10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture\SkyBox">
+      <UniqueIdentifier>{0b585594-9e16-44cc-8a31-d3558f1c79ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture\SkyBox\SkyBoxSet">
+      <UniqueIdentifier>{60c88a8e-60ac-47ca-a3ab-8bf9066ba87d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture\SkyBox\SkyBoxSet\Sunny">
+      <UniqueIdentifier>{1f1a7607-bff0-41f4-b93f-087693d677e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HeightMaps">
+      <UniqueIdentifier>{29ff3e77-8452-4829-9789-21edb1060baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{a26ddbdf-1ec3-4c0a-9a33-cea8ddd5e123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Sky">
+      <UniqueIdentifier>{40849304-24e0-4ba5-8f51-9b6604cf3619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Water">
+      <UniqueIdentifier>{1ea3763b-ad80-4ca0-96ea-54d9e60e78db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Terrain">
+      <UniqueIdentifier>{00d68fb4-30ce-496b-b9c0-be172e02927f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Shaders\Terrain\terrainFragment.txt">
+      <Filter>Shaders\Terrain</Filter>
+    </Text>
+    <Text Include="Shaders\Terrain\terrainVertex.txt">
+      <Filter>Shaders\Terrain</Filter>
+    </Text>
+    <Text Include="Shaders\Water\waterFragment.txt">
+      <Filter>Shaders\Water</Filter>
+    </Text>
+    <Text Include="Shaders\Water\waterVertex.txt">
+      <Filter>Shaders\Water</Filter>
+    </Text>
+    <Text Include="Shaders\Object\objFragment.txt" />
+    <Text Include="Shaders\Object\objVertex.txt" />
+    <Text Include="Shaders\Shore\shoreVertex.glsl" />
+    <Text Include="Shaders\Shore\shoreFragment.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="grafikaBeadando.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Camera.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Control.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\BoundingBox.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\RenderScene.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\TimeCalculator.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Shader.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\HeightMapLoader.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Water.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\fbomanager.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\GUIElement.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\pndtexture.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SkyBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\TextureLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\DirectionalLight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Object.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\InfiniteShore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Classes\GLIncludes.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Camera.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Control.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\BoundingBox.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\RenderScene.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\TimeCalculator.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Shader.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\HeightMapLoader.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\stb_image.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Water.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\fbomanager.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\GUIElement.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\pndtexture.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SkyBox.h" />
+    <ClInclude Include="Classes\TextureLoader.h" />
+    <ClInclude Include="Classes\DirectionalLight.h" />
+    <ClInclude Include="Classes\Object.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Model.h" />
+    <ClInclude Include="Classes\tiny_obj_loader.h" />
+    <ClInclude Include="Classes\InfiniteShore.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayBack2048.png">
+      <Filter>Texture\SkyBox\SkyBoxSet\Sunny</Filter>
+    </Image>
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayDown2048.png">
+      <Filter>Texture\SkyBox\SkyBoxSet\Sunny</Filter>
+    </Image>
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayFront2048.png">
+      <Filter>Texture\SkyBox\SkyBoxSet\Sunny</Filter>
+    </Image>
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayLeft2048.png">
+      <Filter>Texture\SkyBox\SkyBoxSet\Sunny</Filter>
+    </Image>
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayRight2048.png">
+      <Filter>Texture\SkyBox\SkyBoxSet\Sunny</Filter>
+    </Image>
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayUp2048.png">
+      <Filter>Texture\SkyBox\SkyBoxSet\Sunny</Filter>
+    </Image>
+    <Image Include="HeightMaps\island1.png">
+      <Filter>HeightMaps</Filter>
+    </Image>
+    <Image Include="HeightMaps\island2.png">
+      <Filter>HeightMaps</Filter>
+    </Image>
+    <Image Include="Texture\Terrain\grass.jpg" />
+    <Image Include="Texture\Terrain\grasstosand.jpg" />
+    <Image Include="Texture\Terrain\rock.jpg" />
+    <Image Include="Texture\Terrain\sand.jpg" />
+    <Image Include="HeightMaps\island1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Sky\skyfrag.glsl" />
+    <None Include="Shaders\Sky\skyvert.glsl" />
+  </ItemGroup>
+</Project>
