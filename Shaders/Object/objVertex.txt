@@ -1,0 +1,49 @@
+#version 400
+
+uniform mat4 projection_matrix;
+uniform mat4 model_matrix;
+uniform mat4 view_matrix;
+
+mat4 modelview_matrix = view_matrix*model_matrix;
+
+uniform int reflectionRender;
+uniform int refractionRender;
+uniform float water_level;
+
+layout(location = 0) in vec3 a_Vertex;
+layout(location = 1) in vec2 a_TexCoord;
+layout(location = 2) in vec3 a_Normal;
+layout(location = 3) in vec3 a_Color;
+
+out vec3 worldVertex;
+out vec3 vColor;
+out vec3 worldNormal;
+out vec2 texCoord;
+
+void main()
+{
+	texCoord=a_TexCoord;
+	
+	mat4 reflection_matrix=
+	mat4(1,0,0,0,
+		 0,-1,0,0,
+		 0,0,1,0,
+		 0,water_level*2,0,1);
+
+	vec4 viewV;
+	if(reflectionRender==1)
+    {
+		viewV =  reflection_matrix * model_matrix * vec4(a_Vertex,1.0);
+	}
+	else
+	{
+		viewV =  model_matrix * vec4(a_Vertex,1.0);
+	}
+
+    mat4 normalMatrix = transpose(inverse(model_matrix));
+
+	worldNormal = normalize(vec3(normalMatrix * vec4(a_Normal, 1)));
+	vColor = a_Color;
+	worldVertex = (model_matrix * vec4(a_Vertex,1.0)).xyz;
+	gl_Position=projection_matrix*view_matrix*viewV;
+}

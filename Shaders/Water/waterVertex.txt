@@ -1,0 +1,197 @@
+#version 400
+
+#define PI 3.141592f
+#define G 9.81f
+
+layout(location = 0) in vec2 a_Vertex;
+
+uniform mat4 projection_matrix;
+uniform mat4 model_matrix;
+uniform mat4 view_matrix;
+uniform float water_level;
+uniform float d_time;
+
+float time = d_time;
+
+out vec2 normal_textureCoord;
+out vec4 world_Vertex;
+out vec3 wave_normal;
+out mat3 normal_base_matrix;
+
+float calcWaveQ(float Q, float L, float A,float coeff)
+{
+    float W = sqrt(G*2*PI/L);
+	float Qi=Q/(W*A*coeff);
+	return Qi;
+}
+
+vec3 calcWave(vec2 D, float A, float S, float L, float Q, vec3 v)
+{
+    vec3 wave;
+	float phi = S*2*PI/L;
+	float W = sqrt(G*2*PI/L);
+	wave.x = Q*A*D.x*cos(W*dot(D,v.xz)+phi*time);
+	wave.z = Q*A*D.y*cos(W*dot(D,v.xz)+phi*time);
+	wave.y = A*sin(W*dot(D,v.xz)+phi*time);
+	return wave;
+}
+
+vec3 calcB(vec2 D, float A, float S, float L, float Q,vec3 P)
+{
+    vec3 D3 = vec3(D.x,0,D.y);
+    float phi = S*2*PI/L;
+	float W = sqrt(G*2*PI/L);
+    float WA = W*A;
+	float SS = sin(W*dot(D3,P)+phi*time);
+	float CC = cos(W*dot(D3,P)+phi*time);
+
+    vec3 binormal;
+	binormal.x = Q*D.x*D.x*WA*SS;
+	binormal.y = D.x*WA*CC;
+	binormal.z = Q*D.x*D.y*WA*SS;
+	return binormal;
+}
+
+vec3 calcT(vec2 D, float A, float S, float L, float Q,vec3 P)
+{
+    vec3 D3 = vec3(D.x,0,D.y);
+    float phi = S*2*PI/L;
+	float W = sqrt(G*2*PI/L);
+    float WA = W*A;
+	float SS = sin(W*dot(D3,P)+phi*time);
+	float CC = cos(W*dot(D3,P)+phi*time);
+
+    vec3 tangent;
+	tangent.x = Q*D.x*D.y*WA*SS;
+	tangent.y = D.y*WA*CC;
+	tangent.z = Q*D.y*D.y*WA*SS;
+	return tangent;
+}
+
+float Q = 0.5;
+
+void main()
+{
+
+vec4 pworld_Vertex= model_matrix * vec4(a_Vertex.x, water_level, a_Vertex.y, 1);
+pworld_Vertex.y=water_level;
+normal_textureCoord = pworld_Vertex.xz;
+
+vec3 wave;
+
+float A[10];
+float S[10];
+float L[10];
+vec2  D[10];
+
+A[0] = 0.02;
+A[1] = 0.06;
+A[2] = 0.03;
+A[3] = 0.15;
+A[4] = 0.10;
+A[5] = 0.12;
+A[6] = 0.09;
+A[7] = 0.04;
+A[8] = 0.11;
+A[9] = 0.05;
+
+float wA = A[0]+A[1]+A[2]+A[3]+A[4]+A[5]+A[6]+A[7]+A[8]+A[9];
+
+S[0] = 7.0;
+S[1] = 6.4;
+S[2] = 7.5;
+S[3] = 6.0;
+S[4] = 4.4;
+S[5] = 4.5;
+S[6] = 5.5;
+S[7] = 3.3;
+S[8] = 6.0;
+S[9] = 2.0;
+
+L[0] = 30;
+L[1] = 20;
+L[2] = 16;
+L[3] = 34;
+L[4] = 20;
+L[5] = 24;
+L[6] = 13;
+L[7] = 28;
+L[8] = 12;
+L[9] = 21;
+
+float Ds = 0.3;
+D[0] = Ds*vec2(-0.7,-0.1);
+D[1] = Ds*vec2(0.2,-0.3);
+D[2] = Ds*vec2(0.05,0.9);
+D[3] = Ds*vec2(0.3,0.6);
+D[4] = Ds*vec2(0.7,0.9);
+D[5] = Ds*vec2(-0.1,0.5);
+D[6] = Ds*vec2(-0.2,-0.6);
+D[7] = Ds*vec2(-0.5,0.1);
+D[8] = Ds*vec2(0.07,0.6);
+D[9] = Ds*vec2(-0.6,-0.1);
+
+float Q1 = calcWaveQ(Q, L[0],  A[0], 1);
+float Q2 = calcWaveQ(Q, L[1],  A[1], 2);
+float Q3 = calcWaveQ(Q, L[2],  A[2], 3);
+float Q4 = calcWaveQ(Q, L[3],  A[3], 4);
+float Q5 = calcWaveQ(Q, L[4],  A[4], 5);
+float Q6 = calcWaveQ(Q, L[5],  A[5], 6);
+float Q7 = calcWaveQ(Q, L[6],  A[6], 7);
+float Q8 = calcWaveQ(Q, L[7],  A[7], 8);
+float Q9 = calcWaveQ(Q, L[8],  A[8], 9);
+float Q10 = calcWaveQ(Q, L[9],  A[9], 10);
+
+wave = calcWave(D[0],A[0],S[0],L[0],Q1, pworld_Vertex.xyz);
+wave+= calcWave(D[1],A[1],S[1],L[1],Q2, pworld_Vertex.xyz);
+wave+= calcWave(D[2],A[2],S[2],L[2],Q3, pworld_Vertex.xyz);
+wave+= calcWave(D[3],A[3],S[3],L[3],Q4, pworld_Vertex.xyz);
+wave+= calcWave(D[4],A[4],S[4],L[4],Q5, pworld_Vertex.xyz);
+wave+= calcWave(D[5],A[5],S[5],L[5],Q6, pworld_Vertex.xyz);
+wave+= calcWave(D[6],A[6],S[6],L[6],Q7, pworld_Vertex.xyz);
+wave+= calcWave(D[7],A[7],S[7],L[7],Q8, pworld_Vertex.xyz);
+wave+= calcWave(D[8],A[8],S[8],L[8],Q9, pworld_Vertex.xyz);
+wave+= calcWave(D[9],A[9],S[9],L[9],Q10, pworld_Vertex.xyz);
+
+pworld_Vertex.y  += (wave.y-wA);
+pworld_Vertex.xz += wave.xz;
+
+vec3 P = pworld_Vertex.xyz;
+vec3 b = calcB(D[0],A[0],S[0],L[0],Q1,P);
+     b+= calcB(D[1],A[1],S[1],L[1],Q2,P);
+     b+= calcB(D[2],A[2],S[2],L[2],Q3,P);
+	 b+= calcB(D[3],A[3],S[3],L[3],Q4,P);
+     b+= calcB(D[4],A[4],S[4],L[4],Q5,P);
+	 b+= calcB(D[5],A[5],S[5],L[5],Q6,P);
+	 b+= calcB(D[6],A[6],S[6],L[6],Q7,P);
+	 b+= calcB(D[7],A[7],S[7],L[7],Q8,P);
+     b+= calcB(D[8],A[8],S[8],L[8],Q9,P);
+     b+= calcB(D[9],A[9],S[9],L[9],Q10,P);
+
+vec3 t = calcT(D[0],A[0],S[0],L[0],Q1,P);
+     t+= calcT(D[1],A[1],S[1],L[1],Q2,P);
+     t+= calcT(D[2],A[2],S[2],L[2],Q3,P);
+	 t+= calcT(D[3],A[3],S[3],L[3],Q4,P);
+     t+= calcT(D[4],A[4],S[4],L[4],Q5,P);
+	 t+= calcT(D[5],A[5],S[5],L[5],Q6,P);
+	 t+= calcT(D[6],A[6],S[6],L[6],Q7,P);
+	 t+= calcT(D[7],A[7],S[7],L[7],Q8,P);
+     t+= calcT(D[8],A[8],S[8],L[8],Q9,P);
+     t+= calcT(D[9],A[9],S[9],L[9],Q10,P);
+
+b.x = 1-b.x;
+b.z = -b.z;
+b=normalize(b);
+
+t.x = -t.x;
+t.z = 1-t.z;
+t=normalize(t);
+
+vec3 n=normalize(cross(t,b));
+wave_normal=n;
+
+normal_base_matrix=transpose(mat3(t,n,b));
+
+	gl_Position = projection_matrix * view_matrix * pworld_Vertex;
+	world_Vertex = pworld_Vertex;
+}

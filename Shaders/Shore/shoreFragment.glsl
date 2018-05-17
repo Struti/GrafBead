@@ -1,0 +1,48 @@
+#version 400
+
+layout (location = 0) out vec4 color;
+
+uniform float water_level;
+uniform int reflectionRender;
+uniform int refractionRender;
+
+uniform sampler2D shore_texture;
+
+uniform mat4 projection_matrix;
+uniform mat4 model_matrix;
+uniform mat4 view_matrix;
+
+uniform vec3 light_direction;
+uniform vec3 light_diffuse;
+uniform vec3 light_ambient;
+
+mat4 modelview_matrix = view_matrix*model_matrix;
+
+in vec3 worldNormal;
+in vec3 worldVertex;
+in vec2 texCoord;
+
+struct LightSource 
+{
+	vec3 direction;
+	vec3 diffuse;
+	vec3 ambient;
+};
+
+LightSource light0 = LightSource(
+  light_direction,
+  light_diffuse,
+  light_ambient
+);
+
+void main()
+{
+	float lvl = worldVertex.y;
+
+	if (reflectionRender == 1 && lvl<water_level) { discard; }
+
+	if (refractionRender == 1 && lvl>water_level) { discard; }
+
+	float Nfact = dot(-normalize(light0.direction), worldNormal);
+	color = texture(shore_texture, texCoord) * vec4(light0.diffuse, 1)*Nfact + vec4(light0.ambient, 1);
+}

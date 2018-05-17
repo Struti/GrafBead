@@ -1,0 +1,100 @@
+#version 400
+
+layout (location = 0) out vec4 color;
+
+uniform float water_level;
+uniform int reflectionRender;
+uniform int refractionRender;
+
+uniform sampler2D terr_texture1;
+uniform sampler2D terr_texture2;
+uniform sampler2D terr_texture3;
+uniform sampler2D terr_tex_shore;
+
+uniform mat4 projection_matrix;
+uniform mat4 model_matrix;
+uniform mat4 view_matrix;
+
+uniform vec3 light_direction;
+uniform vec3 light_diffuse;
+uniform vec3 light_ambient;
+
+mat4 modelview_matrix = view_matrix*model_matrix;
+
+in vec3 worldNormal;
+in vec3 worldVertex;
+
+struct LightSource 
+{
+	vec3 direction;
+	vec3 diffuse;
+	vec3 ambient;
+};
+
+LightSource light0 = LightSource(
+  light_direction,
+  light_diffuse,
+  light_ambient
+);
+
+float blendAmount;
+vec4 texturecolor,terraincolor;
+float slope = 1.0f - worldNormal.y;
+
+vec4 scene_ambient = vec4(light_ambient, 1.0);
+
+float shoreblend=4;
+
+void main()
+{
+	vec2 texCoordXZ=worldVertex.xz;
+	vec2 texCoordXY=worldVertex.xy;
+	vec2 texCoordZY=worldVertex.zy;
+
+	float lvl = worldVertex.y;
+
+	if (reflectionRender == 1 && lvl<water_level) { discard; }
+
+	if (refractionRender == 1 && lvl>water_level) { discard; }
+
+	vec3 blend_weight = normalize(worldNormal).xyz;
+	blend_weight = (blend_weight - 0.2) * 7;  
+	blend_weight = max(blend_weight, -blend_weight);
+	blend_weight /= blend_weight.x + blend_weight.y + blend_weight.z;
+
+	vec4 terr_texture3_XY=texture(terr_texture3,texCoordXY/7);
+	vec4 terr_texture3_ZY=texture(terr_texture3,texCoordZY/7);
+
+	vec4 terr_texture1_col = texture(terr_texture1,texCoordXZ.st/5);
+	vec4 terr_texture2_col = texture(terr_texture2,texCoordXZ.st/2);
+	vec4 terr_texture3_col = blend_weight.xxxx*terr_texture3_ZY+blend_weight.zzzz*terr_texture3_XY;//triplanar
+	vec4 terr_texture4_col = texture(terr_tex_shore,texCoordXZ.st);
+
+	float blendfac = clamp((water_level+shoreblend-lvl)/shoreblend,0,1);
+	vec4 texturecolor2 = terr_texture4_col;
+	terr_texture1_col=mix(terr_texture1_col,texturecolor2,blendfac);
+	terr_texture2_col=mix(terr_texture2_col,texturecolor2,blendfac);
+	texturecolor = vec4(1,1,1,1);
+    if(slope < 0.3)
+    {
+        blendAmount =  slope / 0.3f;
+	    texturecolor = mix(terr_texture1_col,terr_texture2_col, blendAmount);
+    }
+	
+    if((slope < 0.8) && (slope >= 0.3f))
+    {
+        blendAmount = (slope - 0.3f) * (1.0f / (0.8f - 0.3f));
+        texturecolor = mix(terr_texture2_col,terr_texture3_col, blendAmount);
+    }
+
+    if(slope >= 0.8)
+    {
+        texturecolor = terr_texture3_col;
+    }   
+  
+	vec3 normalDirection = normalize(worldNormal);
+
+	vec3 diffuseReflection = vec3(light0.diffuse) * max(0.0, dot(normalDirection, -normalize(light0.direction)));
+
+    color = vec4((vec3(light0.ambient + diffuseReflection.rgb)*texturecolor.rgb),1);
+}
