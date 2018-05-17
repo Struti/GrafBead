@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{0C631402-6E7D-4DF1-9C50-8FFC4C0A101C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>grafikaBeadando</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(CPP_INCLUDES)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(CPP_LIBS);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Egyetem\Grafika\graf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>C:\Egyetem\Grafika\libs\glfw-3.2.1.bin.WIN64\glfw-3.2.1.bin.WIN64\lib-vc2015;C:\Egyetem\Grafika\libs\glew-2.1.0-win32\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(CPP_INCLUDES)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(CPP_LIBS);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Egyetem\Grafika\graf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Egyetem\Grafika\libs\glfw-3.2.1.bin.WIN64\glfw-3.2.1.bin.WIN64\lib-vc2015;C:\Egyetem\Grafika\libs\glew-2.1.0-win32\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="Shaders\Object\objFragment.txt" />
+    <Text Include="Shaders\Object\objVertex.txt" />
+    <Text Include="Shaders\Shore\shoreFragment.glsl" />
+    <Text Include="Shaders\Shore\shoreVertex.glsl" />
+    <Text Include="Shaders\Terrain\terrainFragment.txt" />
+    <Text Include="Shaders\Terrain\terrainVertex.txt" />
+    <Text Include="Shaders\Water\waterFragment.txt" />
+    <Text Include="Shaders\Water\waterVertex.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Classes\BoundingBox.cpp" />
+    <ClCompile Include="Classes\Camera.cpp" />
+    <ClCompile Include="Classes\Control.cpp" />
+    <ClCompile Include="Classes\DirectionalLight.cpp" />
+    <ClCompile Include="Classes\fbomanager.cpp" />
+    <ClCompile Include="Classes\GUIElement.cpp" />
+    <ClCompile Include="Classes\HeightMapLoader.cpp" />
+    <ClCompile Include="Classes\InfiniteShore.cpp" />
+    <ClCompile Include="Classes\Object.cpp" />
+    <ClCompile Include="Classes\pndtexture.cpp" />
+    <ClCompile Include="Classes\RenderScene.cpp" />
+    <ClCompile Include="Classes\Shader.cpp" />
+    <ClCompile Include="Classes\SkyBox.cpp" />
+    <ClCompile Include="Classes\Model.cpp" />
+    <ClCompile Include="Classes\TextureLoader.cpp" />
+    <ClCompile Include="Classes\TimeCalculator.cpp" />
+    <ClCompile Include="Classes\Water.cpp" />
+    <ClCompile Include="grafikaBeadando.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Classes\BoundingBox.h" />
+    <ClInclude Include="Classes\Camera.h" />
+    <ClInclude Include="Classes\Control.h" />
+    <ClInclude Include="Classes\DirectionalLight.h" />
+    <ClInclude Include="Classes\fbomanager.h" />
+    <ClInclude Include="Classes\GLIncludes.h" />
+    <ClInclude Include="Classes\GUIElement.h" />
+    <ClInclude Include="Classes\InfiniteShore.h" />
+    <ClInclude Include="Classes\Model.h" />
+    <ClInclude Include="Classes\HeightMapLoader.h" />
+    <ClInclude Include="Classes\Object.h" />
+    <ClInclude Include="Classes\pndtexture.h" />
+    <ClInclude Include="Classes\RenderScene.h" />
+    <ClInclude Include="Classes\Shader.h" />
+    <ClInclude Include="Classes\SkyBox.h" />
+    <ClInclude Include="Classes\stb_image.h" />
+    <ClInclude Include="Classes\TextureLoader.h" />
+    <ClInclude Include="Classes\TimeCalculator.h" />
+    <ClInclude Include="Classes\tiny_obj_loader.h" />
+    <ClInclude Include="Classes\Water.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="HeightMaps\island1.png" />
+    <Image Include="HeightMaps\island2.png" />
+    <Image Include="HeightMaps\island1.png" />
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayBack2048.png" />
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayDown2048.png" />
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayFront2048.png" />
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayLeft2048.png" />
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayRight2048.png" />
+    <Image Include="Texture\SkyBox\SkyBoxSet\Sunny\TropicalSunnyDayUp2048.png" />
+    <Image Include="Texture\Terrain\grass.jpg" />
+    <Image Include="Texture\Terrain\grasstosand.jpg" />
+    <Image Include="Texture\Terrain\rock.jpg" />
+    <Image Include="Texture\Terrain\sand.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Sky\skyfrag.glsl" />
+    <None Include="Shaders\Sky\skyvert.glsl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
